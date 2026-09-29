@@ -1,29 +1,28 @@
-# Sistema de mensajería cifrado extremo a extremo
-
-Aplicación de consola en Python que permite registrar usuarios, iniciar sesión y enviar mensajes cifrados y firmados, apoyada en una infraestructura de clave pública (PKI) propia. Proyecto de la asignatura de Criptografía (Universidad Carlos III de Madrid).
-
-## Qué incluye
-
-- **PKI propia:** una autoridad de certificación raíz y dos subordinadas, con certificados X.509 emitidos a cada usuario al registrarse.
-- **Cifrado híbrido:** el mensaje se cifra con Fernet (clave simétrica) y esa clave se protege con RSA-OAEP para el destinatario.
-- **Firmas digitales:** RSA-PSS con SHA-256, verificadas al leer el mensaje junto con la cadena de certificados.
-- **Contraseñas:** almacenadas con hash Argon2.
-- **Pruebas:** 8 tests con `unittest` (certificado raíz autofirmado, cadena de certificados, firma válida, firma manipulada, certificado inexistente, etc.).
-
-## Tecnologías
-
+# End-to-End Encrypted Messaging System
+ 
+Python console application that lets users register, log in and send encrypted, signed messages, backed by its own public key infrastructure (PKI). Project for the Cryptography course (Universidad Carlos III de Madrid).
+ 
+## What's included
+ 
+- **Custom PKI:** a root certificate authority and two subordinate CAs, with X.509 certificates issued to each user upon registration.
+- **Hybrid encryption:** the message is encrypted with Fernet (symmetric key) and that key is protected with RSA-OAEP for the recipient.
+- **Digital signatures:** RSA-PSS with SHA-256, verified when reading the message together with the certificate chain.
+- **Passwords:** stored using Argon2 hashing.
+- **Tests:** 8 `unittest` tests (self-signed root certificate, certificate chain, valid signature, tampered signature, missing certificate, etc.).
+## Technologies
+ 
 Python 3 · `cryptography` · `argon2-cffi`
-
-## Cómo ejecutarlo
-
+ 
+## How to run
+ 
 ```bash
 pip install -r requirements.txt
-python main.py        # la primera vez crea la PKI automáticamente
-python tests.py       # ejecuta las pruebas
+python main.py        # the first run creates the PKI automatically
+python tests.py       # runs the tests
 ```
-
-Los datos generados (claves, certificados y usuarios) se guardan en la carpeta `jsons/`, que está en el `.gitignore` y no se sube al repositorio.
-
-## Autoría
-
-Trabajo en equipo de 2 personas: María Arias Rodríguez y Jaime Sánchez Sánchez.
+ 
+Generated data (keys, certificates and users) is stored in the `jsons/` folder, which is listed in `.gitignore` and is not uploaded to the repository.
+ 
+## Authors
+ 
+Team project by María Arias Rodríguez and Jaime Sánchez Sánchez.
